@@ -3,14 +3,16 @@ const app=express();
 const mongoose=require("mongoose");
 //Requiring listning.js first model
 const Listing=require("./models/listing.js");
+
 const path=require("path");
 const methodOverride = require("method-override");
 const ejsMate = require("ejs-mate");
 
 const wrapAsync = require("./utils/wrapAsync.js");
 const ExpressError = require("./utils/ExpressError.js");
-
+// const Review=require("./models/review.js");
 const {listingSchema} = require("./schema.js");
+const Review=require("./models/review.js");
 
 const mongo_url="mongodb://127.0.0.1:27017/wanderlust";
 
@@ -166,7 +168,22 @@ app.delete("/listings/:id",wrapAsync(async(req,res)=>{
     let deletedListing=await Listing.findByIdAndDelete(id);
     console.log(deletedListing);
     res.redirect("/listings");
-}))
+}));
+
+//Review POST ROUTE
+app.post("/listings/:id/reviews",async(req,res)=>{
+    let listing = await Listing.findById(req.params.id);
+    let newReview = new Review(req.body.review); //In review ratings and comments both are present
+
+    listing.reviews.push(newReview);
+
+    await newReview.save();
+    await listing.save();  //whn v wnt to change in existing database v hv cll async save function
+
+    console.log("New Review Saved");
+    res.send("New Review Saved");
+}) 
+
 // app.get("/testListing",async(req,res)=>{
 //     adding document
 //     let sampleListening = new Listing({
