@@ -10,8 +10,10 @@ const ejsMate = require("ejs-mate");
 
 const wrapAsync = require("./utils/wrapAsync.js");
 const ExpressError = require("./utils/ExpressError.js");
-// const Review=require("./models/review.js");
-const {listingSchema} = require("./schema.js");
+
+//joi 
+const {listingSchema, reviewSchema} = require("./schema.js");
+
 const Review=require("./models/review.js");
 
 const mongo_url="mongodb://127.0.0.1:27017/wanderlust";
@@ -41,6 +43,7 @@ app.get("/",(req,res)=>{
     res.send("Hii im root:)")
 });
 
+//To validate the joi schema or hopscotch requests for post of listing
 const validateListing = (req,res,next) => {
     let {error}=listingSchema.validate(req.body); //validating data from req on linstingSchema and storin in fetched error
     console.log(error);
@@ -55,7 +58,18 @@ const validateListing = (req,res,next) => {
     }else{
         next(); 
     }
-}
+};
+
+//To validate the joi schema or hopscotch requests for post of review
+const validateReview = (req,res,next) => {
+    let {error}=reviewSchema.validate(req.body);
+    if(error){
+        let errMsg = error.details.map((el) => el.message).join(","); 
+        throw new ExpressError(400, errMsg);
+    }else{
+        next(); 
+    }
+};
 
 //INDEX Route
 app.get("/listings",wrapAsync(async (req,res)=>{
@@ -171,7 +185,7 @@ app.delete("/listings/:id",wrapAsync(async(req,res)=>{
 }));
 
 //Review POST ROUTE
-app.post("/listings/:id/reviews",async(req,res)=>{
+app.post("/listings/:id/reviews",validateReview, wrapAsync(async(req,res)=>{
     let listing = await Listing.findById(req.params.id);
     let newReview = new Review(req.body.review); //In review ratings and comments both are present
 
@@ -180,9 +194,11 @@ app.post("/listings/:id/reviews",async(req,res)=>{
     await newReview.save();
     await listing.save();  //whn v wnt to change in existing database v hv cll async save function
 
-    console.log("New Review Saved");
-    res.send("New Review Saved");
-}) 
+    // console.log("New Review Saved");
+    // res.send("New Review Saved");
+
+    res.redirect(`/listings/${listing._id}`);
+}));
 
 // app.get("/testListing",async(req,res)=>{
 //     adding document
