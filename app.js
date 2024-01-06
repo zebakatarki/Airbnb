@@ -16,7 +16,7 @@ const mongo_url="mongodb://127.0.0.1:27017/wanderlust";
 
 main()
 .then(()=>{
-    console.log("Connected to DB");
+    console.log("Connected to MongooDB Of Major Project");
 })
 .catch((err)=>{
     console.log("MongoDB Error",err);
