@@ -86,7 +86,7 @@ app.get("/listings/new",(req,res)=>{
 //SHOW Route
 app.get("/listings/:id",wrapAsync(async(req,res)=>{
     let{id}=req.params;
-    const listing=await Listing.findById(id);
+    const listing=await Listing.findById(id).populate("reviews"); //Populating reviews with their details
     res.render("listings/show.ejs",{listing});
 }))
 
@@ -184,6 +184,17 @@ app.delete("/listings/:id",wrapAsync(async(req,res)=>{
     res.redirect("/listings");
 }));
 
+//<================REVIEWS=====================>
+
+//Review get request
+app.get("/listings/:id/reviews",async(req,res)=>{
+    let {id}=req.params;
+    // console.log(id);
+    const listing=await Listing.findById(id);
+    console.log(listing);
+    res.render("listings/review.ejs",{listing});
+})
+
 //Review POST ROUTE
 app.post("/listings/:id/reviews",validateReview, wrapAsync(async(req,res)=>{
     let listing = await Listing.findById(req.params.id);
@@ -199,6 +210,21 @@ app.post("/listings/:id/reviews",validateReview, wrapAsync(async(req,res)=>{
 
     res.redirect(`/listings/${listing._id}`);
 }));
+
+//Review Delete Route
+app.delete("/listings/:id/reviews/:reviewId", wrapAsync(async(req,res)=>{
+    let {id , reviewId} = req.params;
+    //Deleting the perticular review from listing's review array also
+    //So here firstly v are finding the listing which is matched to the id 
+    //Secondly v r pulling the perticular review via its id from reviews array of Listing 
+    await Listing.findByIdAndUpdate(id,{$pull:{reviews: reviewId}});
+
+    //Deleting the perticular review from review model or collection
+    await Review.findByIdAndDelete(reviewId);
+
+    res.redirect(`/listings/${id}`);
+})
+); 
 
 // app.get("/testListing",async(req,res)=>{
 //     adding document
