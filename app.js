@@ -2,22 +2,25 @@ const express=require("express");
 const app=express();
 const mongoose=require("mongoose");
 //Requiring listning.js first model
-const Listing=require("./models/listing.js");
+// const Listing=require("./models/listing.js");
 const path=require("path");
 const methodOverride = require("method-override");
 const ejsMate = require("ejs-mate");
-const wrapAsync = require("./utils/wrapAsync.js");
+// const wrapAsync = require("./utils/wrapAsync.js");
 const ExpressError = require("./utils/ExpressError.js");
 const session = require("express-session"); //Session
-const flash=require("connect-flash");
+const flash=require("connect-flash"); //flash
+const passport = require("passport"); //passport
+const LocalStrategy = require("passport-local");//passport-local
+const User = require("./models/user.js"); //User Schema 
 
 //joi 
-const {listingSchema, reviewSchema} = require("./schema.js");
-const Review=require("./models/review.js");
+// const {listingSchema, reviewSchema} = require("./schema.js");
+// const Review=require("./models/review.js");
 
-const listings = require("./routes/listing.js");
-const reviews = require("./routes/review.js");
-
+const listingRouter = require("./routes/listing.js");
+const reviewRouter = require("./routes/review.js");
+const userRouter = require("./routes/user.js");
 const mongo_url="mongodb://127.0.0.1:27017/wanderlust";
 
 main()
@@ -56,8 +59,24 @@ app.get("/",(req,res)=>{
     res.send("Hii im root:)")
 });
 
+//Session and flash
 app.use(session(sessionOptions));
 app.use(flash());
+
+//passport initialize for each session
+app.use(passport.initialize());
+
+//makeing our website if the user using diff pages of website dont need for to ask login for each page needed the login once in a one complete session
+app.use(passport.session());
+
+//in passport.use new LocalStrategy whc v hv made to authentic each user use User schema and aunthenticate() method
+//authenticate() it is a function whc generates a function that used in passport's localStrategy
+passport.use(new LocalStrategy(User.authenticate()));
+
+//serializeUser means storing information of user in session
+passport.serializeUser(User.serializeUser());
+//After complition session by user to remove the information from temporary storage we use deserializeUser()
+passport.deserializeUser(User.deserializeUser());
 
 //middle ware for flash 
 app.use((req,res,next)=>{
@@ -67,11 +86,19 @@ app.use((req,res,next)=>{
     next();
 }); 
 
-//Where ever the listings will come we use the our listings
-app.use("/listings", listings);
+app.get("/demouser",async(req,res)=>{
+    let fakeUser = new User({
+        email:"zeba@gmail.com",
+        username:"zeba_katarki"
+    });
 
-//Where ever the "listings/:id/reviews" will come we use the our listings
-app.use("/listings/:id/reviews", reviews); 
+    let registeredUser= await User.register(fakeUser,"Zebakatarki"); //here register is static method with 2 parameter user and password
+    res.send(registeredUser);
+})
+
+app.use("/listings", listingRouter); //Where ever the listings will come we use the our listings
+app.use("/listings/:id/reviews", reviewRouter); //Where ever the "listings/:id/reviews" will come we use the our listings
+app.use("/", userRouter); //User register router
 
 //it gets in play when any random route is searched which is not defined in our system
 app.all("*",(req,res,next)=>{
