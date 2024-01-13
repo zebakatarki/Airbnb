@@ -65,10 +65,8 @@ app.use(flash());
 
 //passport initialize for each session
 app.use(passport.initialize());
-
-//makeing our website if the user using diff pages of website dont need for to ask login for each page needed the login once in a one complete session
+//making our website if the user using diff pages of website dont need for to ask login for each page needed the login once in a one complete session
 app.use(passport.session());
-
 //in passport.use new LocalStrategy whc v hv made to authentic each user use User schema and aunthenticate() method
 //authenticate() it is a function whc generates a function that used in passport's localStrategy
 passport.use(new LocalStrategy(User.authenticate()));
@@ -83,16 +81,19 @@ app.use((req,res,next)=>{
     res.locals.success = req.flash("success");
     // console.log(success);
     res.locals.error = req.flash("error");
+    res.locals.currentUser = req.user; //navbar currentUser
+    
     next();
 }); 
 
+//Demo insertion of user
 app.get("/demouser",async(req,res)=>{
     let fakeUser = new User({
-        email:"zeba@gmail.com",
-        username:"zeba_katarki"
+        email:"abrar@gmail.com",
+        username:"Abrar"
     });
-
-    let registeredUser= await User.register(fakeUser,"Zebakatarki"); //here register is static method with 2 parameter user and password
+    //here register is static method with 2 parameter user and password and converted password into hashed form and check username is unique or not 
+    let registeredUser= await User.register(fakeUser,"Abrar"); 
     res.send(registeredUser);
 })
 
