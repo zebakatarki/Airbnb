@@ -4,11 +4,13 @@ const router  = express.Router({mergeParams:true});
 const wrapAsync = require("../utils/wrapAsync.js");
 const ExpressError = require("../utils/ExpressError.js");
 
-// const {listingSchema, reviewSchema} = require("../schema.js");
-const {reviewSchema} = require("../schema.js");
+// // const {listingSchema, reviewSchema} = require("../schema.js");
+// const {reviewSchema} = require("../schema.js");
 
 const Review=require("../models/review.js");
 const Listing=require("../models/listing.js");
+
+const {validateReview, isLoggedInReview, isReviewAuthor} = require("../middleware.js");
 
 //Extra's
 // const express=require("express");
@@ -22,15 +24,16 @@ const Listing=require("../models/listing.js");
 
 
 //To validate the joi schema or hopscotch requests for post of review
-const validateReview = (req,res,next) => {
-    let {error}=reviewSchema.validate(req.body);
-    if(error){
-        let errMsg = error.details.map((el) => el.message).join(","); 
-        throw new ExpressError(400, errMsg);
-    }else{
-        next(); 
-    }
-};
+//Adding it in middleware
+// const validateReview = (req,res,next) => {
+//     let {error}=reviewSchema.validate(req.body);
+//     if(error){
+//         let errMsg = error.details.map((el) => el.message).join(","); 
+//         throw new ExpressError(400, errMsg);
+//     }else{
+//         next(); 
+//     }
+// };
 
 // app.get("/listings/:id/reviews",async(req,res)=>{
 //     let {id}=req.params;
@@ -93,8 +96,8 @@ const validateReview = (req,res,next) => {
 // ); 
 
 //Review get request
-router.get("/",async(req,res)=>{
-    console.log("Working");
+router.get("/",isLoggedInReview,async(req,res)=>{
+    console.log("User is loggedIn to add review");
     let {id}=req.params;
     console.log("review.js",id);
     const listing=await Listing.findById(id);
@@ -103,9 +106,12 @@ router.get("/",async(req,res)=>{
 })
 
 //Review POST ROUTE
-router.post("/",validateReview, wrapAsync(async(req,res)=>{
-    let listing = await Listing.findById(req.params.id);
+router.post("/",isLoggedInReview,validateReview, wrapAsync(async(req,res)=>{
+    let listing = await Listing.findById(req.params.id); //id of listing
     let newReview = new Review(req.body.review); //In review ratings and comments both are present
+
+    newReview.author = req.user._id; //id of author
+    console.log("New Review Added By",newReview);
 
     listing.reviews.push(newReview);
 
@@ -120,11 +126,12 @@ router.post("/",validateReview, wrapAsync(async(req,res)=>{
 }));
 
 //Review Delete Route
-router.delete("/:reviewId", wrapAsync(async(req,res)=>{
+router.delete("/:reviewId", isLoggedInReview,isReviewAuthor,wrapAsync(async(req,res)=>{
     let {id , reviewId} = req.params;
+
     //Deleting the perticular review from listing's review array also
     //So here firstly v are finding the listing which is matched to the id 
-    //Secondly v r pulling the perticular review via its id from reviews array of Listing 
+    //Secondly v r pulling the perticular review via its id from reviews array of Listing
     await Listing.findByIdAndUpdate(id,{$pull:{reviews: reviewId}});
 
     //Deleting the perticular review from review model or collection

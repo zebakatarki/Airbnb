@@ -1,10 +1,10 @@
-const express=require("express");
+const express=require("express"); 
 const app=express();
 const mongoose=require("mongoose");
 //Requiring listning.js first model
 // const Listing=require("./models/listing.js");
 const path=require("path");
-const methodOverride = require("method-override");
+const methodOverride = require("method-override"); 
 const ejsMate = require("ejs-mate");
 // const wrapAsync = require("./utils/wrapAsync.js");
 const ExpressError = require("./utils/ExpressError.js");
@@ -20,7 +20,7 @@ const User = require("./models/user.js"); //User Schema
 
 const listingRouter = require("./routes/listing.js");
 const reviewRouter = require("./routes/review.js");
-const userRouter = require("./routes/user.js");
+const userRouter = require("./routes/user.js"); 
 const mongo_url="mongodb://127.0.0.1:27017/wanderlust";
 
 main()
@@ -60,29 +60,34 @@ app.get("/",(req,res)=>{
 });
 
 //Session and flash
+console.log("Session Options and flash called");
 app.use(session(sessionOptions));
 app.use(flash());
 
 //passport initialize for each session
+console.log("passport.initialize() called");
 app.use(passport.initialize());
 //making our website if the user using diff pages of website dont need for to ask login for each page needed the login once in a one complete session
+console.log("passport.session() called");
 app.use(passport.session());
 //in passport.use new LocalStrategy whc v hv made to authentic each user use User schema and aunthenticate() method
 //authenticate() it is a function whc generates a function that used in passport's localStrategy
 passport.use(new LocalStrategy(User.authenticate()));
 
 //serializeUser means storing information of user in session
+console.log("User.serializeUser() called");
 passport.serializeUser(User.serializeUser());
 //After complition session by user to remove the information from temporary storage we use deserializeUser()
+console.log("User.deserializeUser() called");
 passport.deserializeUser(User.deserializeUser());
 
 //middle ware for flash 
 app.use((req,res,next)=>{
+    console.log("Locals Route Called");
     res.locals.success = req.flash("success");
-    // console.log(success);
     res.locals.error = req.flash("error");
-    res.locals.currentUser = req.user; //navbar currentUser
-    
+    res.locals.currentUser = req.user; //navbar's currentUser
+    console.log("Current User Is:",res.locals.currentUser);
     next();
 }); 
 
@@ -103,10 +108,12 @@ app.use("/", userRouter); //User register router
 
 //it gets in play when any random route is searched which is not defined in our system
 app.all("*",(req,res,next)=>{
+    console.log("Invalid route searched");
     next(new ExpressError(404,"Page Not Found"));
 })
 
 app.use((err,req,res,next)=>{
+    console.log("ExpressError.js:",err); 
     let{statusCode=500,message="Something went wrong!"}=err;
     res.status(statusCode).render("error.ejs",{message});
 });
@@ -367,4 +374,3 @@ app.listen(8080, ()=>{
 //     // console.log(sampleListening);
 //     res.send("Successful Testing");
 // })
-
