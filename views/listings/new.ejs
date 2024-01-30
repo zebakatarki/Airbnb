@@ -8,7 +8,7 @@
 <div class="row mt-3 new-main">
     <div class="col-8 offset-2">
     <h3>Create a New Listing</h3>
-    <form method="post" action="/listings" novalidate class="needs-validation">
+    <form method="post" action="/listings" novalidate class="needs-validation" enctype="multipart/form-data">
     <div class="mb-3">
         <label for="title" class="form-label">Title</label>
         <input type="text" name="listing[title]" placeholder="Add A Catchy Title" class="form-control new-inp" required/>
@@ -28,8 +28,9 @@
     </div>
        
     <div class="mb-3">
-        <label for="image" class="form-label">Image</label>
-        <input type="text" name="listing[image]" placeholder="Enter image url/Link" class="form-control new-inp" />
+        <label for="image" class="form-label">Upload Listing Image</label>
+        <input type="file" name="listing[image]" class="form-control new-inp" required />
+        
     </div>
        
     <div class="row">
@@ -57,9 +58,26 @@
             Location should be valid.
           </div>
     </div>
-        
-        <button type="submit" class="btn btn-dark add-btn  mb-2">Add</button>
-        
+
+    <div class="mb-3">
+        <label for="category" class="form-label">Category</label>
+        <select class="form-select" name="listing[category]" id="category">
+            <option value="iconicCity">Iconic City</option>
+            <option value="castle">Castle</option>
+            <option value="pool">Pool</option>
+            <option value="camping">Camping</option>
+            <option value="farms">Farm</option>
+            <option value="arctic">Arctic</option>
+            <option value="ship">Ship</option>
+            <option value="tropical">Tropical</option>
+            <option value="house">House</option>
+            <option value="golf">Golf</option>
+            <option value="beachFront">Beach Front</option>
+            <option value="ski-in-out">Ski-in-out</option>
+        </select>
+    </div>
+    
+    <button type="submit" class="btn btn-dark add-btn  mb-2">Add</button>   
     </form>
 </div>
 </div>

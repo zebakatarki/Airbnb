@@ -1,16 +1,5 @@
 const Joi = require('joi');
 
-// const listingSchema = Joi.object({
-//     listing : Joi.object({
-//         title: Joi.string().required(),
-//         description: Joi.string().required(),
-//         location: Joi.string().required(),
-//         country: Joi.string().required(),
-//         price: Joi.number().required().min(0),
-//         image: Joi.string().allow("",null)
-        
-//     }).required()
-
 //Listings schema to validate the data which is cmg from client side that too from hoppscotch body
 module.exports.listingSchema = Joi.object({
     listing : Joi.object({
@@ -19,7 +8,8 @@ module.exports.listingSchema = Joi.object({
         location: Joi.string().required(),
         country: Joi.string().required(),
         price: Joi.number().required().min(0),
-        image: Joi.string().allow("",null) //mongoes will handle default image
+        image: Joi.string().allow("",null), //mongoose will handle default image
+        category: Joi.string().valid('iconicCity', 'castle', 'pool', 'camping', 'farms', 'arctic', 'ship', 'tropical', 'house', 'golf', 'beachFront','ski-in-out').required()
         
     }).required(),
 });

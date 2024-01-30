@@ -1,6 +1,5 @@
 body{
     font-family: 'Plus Jakarta Sans', sans-serif !important;
-    /* to make footer sticky in a remaining space fter the content occupation */
     display: flex;
     flex-direction: column;
     min-height: 100vh;
@@ -85,7 +84,6 @@ body{
 }
 
 /* New Add Listing */
-
 .add-btn{
     background-color:  #fe424d !important;
     border: none !important;
@@ -99,22 +97,11 @@ body{
 
 /* Show Page */
 .show-img{
-    height: 30vh;
+    height: 50vh;
 }
 .btns{
     display: flex;
-    /* margin-bottom: 6px; */
 }
-/* .show-card{
-    padding-left: 0;
-    padding-right: 0;
-} */
-/* .new-inp{
-    height: 40px;
-}
-.edit-inp{
-    height: 40px;
-} */
 
 /* reviews page */
 .review-page{
@@ -123,4 +110,37 @@ body{
     padding-left:8px;
     padding-right:8px;
     padding-bottom:13px;
+}
+
+/* Map */
+#map { 
+    height: 400px;
+    width: 88vh; 
+}
+
+/* .marker {
+    height: 10px;
+    width:20px;
+    cursor: pointer;
+    
+    } */
+
+/* Drop down */
+.dropdown-item{
+cursor: pointer;
+}
+
+/* filter listings on icons */
+#IconicCities{
+    border: none;
+    background-color: white;
+}
+
+#countryName{
+        font-size: 22px;
+}
+
+.icon-button{
+    border: none;
+    background-color: white;
 }

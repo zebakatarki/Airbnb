@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Wanderlust</title>
     <link rel="stylesheet" href="/css/style.css"/>
+    <link rel="stylesheet" href="/css/rating.css"/>  
 
     <!-- Bootstrap -->
     <link 
@@ -27,6 +28,12 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
 
+    <!-- rating styling -->
+    <link href="/css/rating.css"rel="stylesheet" /> 
+    
+    <!-- mapping links whc v fetched from doc of mapbox's example -> Display a map on a website -->
+    <link href="https://api.mapbox.com/mapbox-gl-js/v3.1.0/mapbox-gl.css" rel="stylesheet">
+    <script src="https://api.mapbox.com/mapbox-gl-js/v3.1.0/mapbox-gl.js"></script> 
 </head>
 <body>
     <%- include("../includes/navbar.ejs") %>   <!--connected navbar of navbar.ejs -->
@@ -34,7 +41,6 @@
     <div class="container">
         <%- include("../includes/flash.ejs") %>
     <%- body %></div>
-
 
     <%- include("../includes/footer.ejs") %>
 

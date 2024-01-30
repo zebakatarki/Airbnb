@@ -6,13 +6,10 @@
     }
 </style>
 
-<!-- we use value to prewritten content. -->
-
 <div class="row mt-3">
     <div class="col-8 offset-2">
-    <!-- <br><br> -->
     <h3>Edit Your Listing</h3>
-    <form method="post" action="/listings/<%= listing._id %>/update?_method=put" novalidate class="needs-validation">
+    <form method="post" action="/listings/<%= listing._id %>?_method=put" novalidate class="needs-validation" enctype="multipart/form-data">
 
         <div class="mb-3">
             <label for="title" class="form-label">Title</label>
@@ -32,21 +29,23 @@
               </div>
         </div>
            
-        <div class="mb-3" >
-            <label for="image" class="form-label">Image</label>
-            <input type="text" name="listing[image]" value="<%= listing.image %>" class="form-control  edit-inp" required/>
-            <div class="invalid-feedback">
-                Please enter image url.
-              </div>
+        <div class="mb-3">
+            Original Listing Image<br/>
+            <img src="<%= originalImageUrl %>" />
         </div>
-           
+
+        <div class="mb-3" >
+            <label for="image" class="form-label">New Image Link</label>
+            <input type="file" name="listing[image]" class="form-control  edit-inp"/>
+        </div>
+ 
         <div class="row">
             <div class="mb-3 col-md-4">
                 <label for="price" class="form-label">Price</label>
                 <input type="number" name="listing[price]" value="<%= listing.price %>" class="form-control  edit-inp" required/>
                 <div class="invalid-feedback">
                     Price should be valid.
-                  </div>
+                </div>
             </div>
                 
             <div class="mb-3 col-md-8">
@@ -66,9 +65,25 @@
               </div>
         </div>
 
-        <button type="submit" class="btn btn-dark edit-btn mb-2">Edit</button>
-        <!-- <br><br> -->
+    <div class="mb-3">
+        <label for="category" class="form-label">Category</label>
+            <select class="form-select" name="listing[category]" id="category">
+                <option value="iconicCity" <%= listing.category === 'iconicCity' ? 'selected' : '' %>>Iconic City</option>
+                <option value="castle" <%= listing.category === 'castle' ? 'selected' : '' %>>Castle</option>
+                <option value="pool" <%= listing.category === 'pool' ? 'selected' : '' %>>Pool</option>
+                <option value="camping" <%= listing.category === 'camping' ? 'selected' : '' %>>Camping</option>
+                <option value="farms" <%= listing.category === 'farms' ? 'selected' : '' %>>Farm</option>
+                <option value="arctic" <%= listing.category === 'arctic' ? 'selected' : '' %>>Arctic</option>
+                <option value="ship" <%= listing.category === 'ship' ? 'selected' : '' %>>Ship</option>
+                <option value="tropical" <%= listing.category === 'tropical' ? 'selected' : '' %>>Tropical</option>
+                <option value="house" <%= listing.category === 'house' ? 'selected' : '' %>>House</option>
+                <option value="golf" <%= listing.category === 'golf' ? 'selected' : '' %>>Golf</option>
+                <option value="beachFront" <%= listing.category === 'beachFront' ? 'selected' : '' %>>Beach Front</option>
+                <option value="ski-in-out" <%= listing.category === 'ski-in-out' ? 'selected' : '' %>>Ski-in-out</option>
+            </select>
+    </div>
+    <button type="submit" class="btn btn-dark edit-btn mb-2">Edit</button>
     </form>
     </div>
-    </div>
-    <!-- <script src="/js/script.js"></script> -->
+</div>
+    

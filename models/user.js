@@ -10,8 +10,5 @@ const userSchema = new Schema({
     },
 });
 
-//Used bcz it automatically implements the username,hashing,salting and hash password and add the multiple methods 
-// User.plugin(passportLocalMongoose);
 userSchema.plugin(passportLocalMongoose);
-
 module.exports = mongoose.model('User',userSchema);
