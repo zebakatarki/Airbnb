@@ -18,7 +18,7 @@ router.get("/new",isLoggedIn,(listingController.renderNewForm)); //New Route
 
 //Icons Functionality
 const categories = [
-    { path: "/iconicCities", category: "iconicCity", iconClass: "fa-mountain-city" },
+    { path: "/iconiccities", category: "iconicCity", iconClass: "fa-mountain-city" },
     { path: "/castles", category: "castle", iconClass: "fa-fort-awesome" },
     { path: "/pools", category: "pool", iconClass: "fa-person-swimming" },
     { path: "/camping", category: "camping", iconClass: "fa-campground" },
