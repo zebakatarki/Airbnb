@@ -1,4 +1,4 @@
-mapboxgl.accessToken = mapToken;
+mapboxgl.accessToken = MAP_TOKEN;
 
 const map = new mapboxgl.Map({
 container: 'map', // container ID
@@ -7,7 +7,7 @@ center: listing.geometry.coordinates, //position [longitude, latitude]
 zoom: 9,
 });
 
-console.log("Map Token",mapToken);
+console.log("Map Token",MAP_TOKEN);
 console.log("Coordinates",listing.geometry.coordinates);
 
 // Create a default Marker and add it to the map.
@@ -20,7 +20,7 @@ const marker = new mapboxgl.Marker({ color: 'red'})
 
 
 // //<<<<<<<<<< Code of Added Image As A Market >>>>>>>>>>>>>>
-// mapboxgl.accessToken = mapToken;
+// mapboxgl.accessToken = MAP_TOKEN;
 
 // const map = new mapboxgl.Map({
 // container: 'map', // container ID
