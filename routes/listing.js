@@ -8,6 +8,9 @@ const multer  = require('multer'); //parse the multipart/form-data's data by usi
 const {storage}=require("../cloudconfig.js");
 const upload = multer({ storage }); //store files in cloudinary storage 
 
+app.get('/', (req, res) => {
+    res.redirect('/listings');
+});
 
 //Router.route(path)
 router.route("/")
