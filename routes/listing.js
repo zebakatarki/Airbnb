@@ -16,39 +16,6 @@ router.route("/")
 
 router.get("/new",isLoggedIn,(listingController.renderNewForm)); //New Route
 
-
-// const ipAddress = "44.233.151.27"; // Choose one of the static IP addresses provided  35.160.120.126
-// const port = 8080; // Assuming your server is listening on port 8080
-
-// // const categories = [
-// //     { path: `http://${ipAddress}:${port}/iconiccities`, category: "iconicCity", iconClass: "fa-mountain-city" },
-// //     { path: `http://${ipAddress}:${port}/castles`, category: "castle", iconClass: "fa-fort-awesome" },
-// //     // Add other categories with the appropriate path
-// // ];
-// const categories = [
-//     { path: `http://${ipAddress}:${port}/iconiccities`, category: "iconicCity", iconClass: "fa-mountain-city" },
-//     { path: `http://${ipAddress}:${port}/castles`, category: "castle", iconClass: "fa-fort-awesome" },
-//     { path: `http://${ipAddress}:${port}/pools`, category: "pool", iconClass: "fa-person-swimming" },
-//     { path: `http://${ipAddress}:${port}/camping`, category: "camping", iconClass: "fa-campground" },
-//     { path: `http://${ipAddress}:${port}/farms`, category: "farms", iconClass: "fa-cow" },
-//     { path: `http://${ipAddress}:${port}/arctics`, category: "arctic", iconClass: "fa-snowflake" },
-//     { path: `http://${ipAddress}:${port}/ships`, category: "ship", iconClass: "fa-ship" },
-//     { path: `http://${ipAddress}:${port}/tropicals`, category: "tropical", iconClass: "fa-tree" },
-//     { path: `http://${ipAddress}:${port}/houses`, category: "house", iconClass: "fa-house" },
-//     { path: `http://${ipAddress}:${port}/golfing`, category: "golf", iconClass: "fa-golf-ball-tee" },
-//     { path: `http://${ipAddress}:${port}/beachFront`, category: "beachFront", iconClass: "fa-umbrella-beach" },
-//     { path: `http://${ipAddress}:${port}/ski-in-out`, category: "ski-in-out", iconClass: "fa-person-skiing-nordic" }
-// ];
-
-// categories.forEach(({ path, category, iconClass }) => {
-//     router.get(path, wrapAsync(async(req, res) => {
-//         console.log(`${path} is Working`);
-//         const allListings = await Listing.find({ category });
-//         console.log(allListings);
-//         res.render("listings/icon_filter.ejs", { allListings });
-//     }));
-// });
-
 // //Icons Functionality
 // const categories = [
 //     { path: "/iconiccities", category: "iconicCity", iconClass: "fa-mountain-city" },
@@ -79,86 +46,72 @@ router.get("/iconiccities",wrapAsync(async(req,res)=>{
     const allListings = await Listing.find({category:"iconicCity" });
     console.log(allListings);
     res.render("listings/icon_filter.ejs",{allListings});
-    // res.redirect(`${process.env.DOMAIN}/listings/iconicCity`);
 }));
 router.get("/castles",wrapAsync(async(req,res)=>{
     console.log("/iconicCities is Working");
     const allListings = await Listing.find({category:"castle" });
     console.log(allListings);
     res.render("listings/icon_filter.ejs",{allListings});
-    // res.redirect(`${process.env.DOMAIN}/listings/castles`);
 }));
 router.get("/pools",wrapAsync(async(req,res)=>{
     console.log("/iconicCities is Working");
     const allListings = await Listing.find({category:"pool" });
     console.log(allListings);
     res.render("listings/icon_filter.ejs",{allListings});
-    // res.redirect(`${process.env.DOMAIN}/listings/pools`);
 }));
 router.get("/camping",wrapAsync(async(req,res)=>{
     console.log("/iconicCities is Working");
     const allListings = await Listing.find({category:"camping" });
     console.log(allListings);
     res.render("listings/icon_filter.ejs",{allListings});
-    // res.redirect(`${process.env.DOMAIN}/listings/camping`);
 }));
 router.get("/farms",wrapAsync(async(req,res)=>{
     console.log("/iconicCities is Working");
     const allListings = await Listing.find({category:"farms" });
     console.log(allListings);
     res.render("listings/icon_filter.ejs",{allListings});
-    // res.redirect(`${process.env.DOMAIN}/listings/farms`);
 }));
 router.get("/arctics",wrapAsync(async(req,res)=>{
     console.log("/iconicCities is Working");
     const allListings = await Listing.find({category:"arctic" });
     console.log(allListings);
     res.render("listings/icon_filter.ejs",{allListings});
-    // res.redirect(`${process.env.DOMAIN}/listings/arctics`);
 }));
 router.get("/ships",wrapAsync(async(req,res)=>{
     console.log("/iconicCities is Working");
     const allListings = await Listing.find({category:"ship" });
     console.log(allListings);
     res.render("listings/icon_filter.ejs",{allListings});
-    // res.redirect(`${process.env.DOMAIN}/listings/ships`);
 }));
 router.get("/tropicals",wrapAsync(async(req,res)=>{
     console.log("/iconicCities is Working");
     const allListings = await Listing.find({category:"tropical" });
     console.log(allListings);
     res.render("listings/icon_filter.ejs",{allListings});
-    // res.redirect(`${process.env.DOMAIN}/listings/tropicals`);
 }));
 router.get("/houses",wrapAsync(async(req,res)=>{
     console.log("/iconicCities is Working");
     const allListings = await Listing.find({category:"house" });
     console.log(allListings);
     res.render("listings/icon_filter.ejs",{allListings});
-    // res.redirect(`${process.env.DOMAIN}/listings/houses`);
 }));
 router.get("/golfing",wrapAsync(async(req,res)=>{
     console.log("/iconicCities is Working");
     const allListings = await Listing.find({category:"golf" });
     console.log(allListings);
     res.render("listings/icon_filter.ejs",{allListings});
-    // res.redirect(`${process.env.DOMAIN}/listings/golfing`);
 }));
 router.get("/beachFront",wrapAsync(async(req,res)=>{
     console.log("/iconicCities is Working");
     const allListings = await Listing.find({category:"beachFront" });
     console.log(allListings);
     res.render("listings/icon_filter.ejs",{allListings});
-    // res.redirect(`${process.env.DOMAIN}/listings/beachFront`);
 }));
 router.get("/ski-in-out",wrapAsync(async(req,res)=>{
     console.log("/iconicCities is Working");
     const allListings = await Listing.find({category:"ski-in-out" });
     console.log(allListings);
     res.render("listings/icon_filter.ejs",{allListings});
-    // // if(allListings.length){
-    //     res.redirect(`${process.env.DOMAIN}/listings/ski-n-out`);
-    // // }
 }));
 
 
