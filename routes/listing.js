@@ -74,23 +74,27 @@ router.get("/new",isLoggedIn,(listingController.renderNewForm)); //New Route
 //     }));
 // });
 
-router.get("/iconicCities",wrapAsync(async(req,res)=>{
+router.get("/iconiccities",wrapAsync(async(req,res)=>{
     console.log("/iconicCities is Working");
     const allListings = await Listing.find({category:"iconicCity" });
     console.log(allListings);
-    res.render("listings/icon_filter.ejs",{allListings});
+    // res.render("listings/icon_filter.ejs",{allListings});
+    // res.redirect(`${process.env.DOMAIN}/listings/iconicCity`);
+    res.redirect(`${process.env.DOMAIN}/listings/iconicCity`);
 }));
 router.get("/castles",wrapAsync(async(req,res)=>{
     console.log("/iconicCities is Working");
     const allListings = await Listing.find({category:"castle" });
     console.log(allListings);
-    res.render("listings/icon_filter.ejs",{allListings});
+    // res.render("listings/icon_filter.ejs",{allListings});
+    res.redirect(`${process.env.DOMAIN}/listings/castles`);
 }));
 router.get("/pools",wrapAsync(async(req,res)=>{
     console.log("/iconicCities is Working");
     const allListings = await Listing.find({category:"pool" });
     console.log(allListings);
-    res.render("listings/icon_filter.ejs",{allListings});
+    // res.render("listings/icon_filter.ejs",{allListings});
+    res.redirect(`${process.env.DOMAIN}/listings/pools`);
 }));
 router.get("/camping",wrapAsync(async(req,res)=>{
     console.log("/iconicCities is Working");
