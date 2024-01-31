@@ -100,55 +100,66 @@ router.get("/camping",wrapAsync(async(req,res)=>{
     console.log("/iconicCities is Working");
     const allListings = await Listing.find({category:"camping" });
     console.log(allListings);
-    res.render("listings/icon_filter.ejs",{allListings});
+    // res.render("listings/icon_filter.ejs",{allListings});
+    res.redirect(`${process.env.DOMAIN}/listings/camping`);
 }));
 router.get("/farms",wrapAsync(async(req,res)=>{
     console.log("/iconicCities is Working");
     const allListings = await Listing.find({category:"farms" });
     console.log(allListings);
-    res.render("listings/icon_filter.ejs",{allListings});
+    // res.render("listings/icon_filter.ejs",{allListings});
+    res.redirect(`${process.env.DOMAIN}/listings/farms`);
 }));
 router.get("/arctics",wrapAsync(async(req,res)=>{
     console.log("/iconicCities is Working");
     const allListings = await Listing.find({category:"arctic" });
     console.log(allListings);
-    res.render("listings/icon_filter.ejs",{allListings});
+    // res.render("listings/icon_filter.ejs",{allListings});
+    res.redirect(`${process.env.DOMAIN}/listings/arctics`);
 }));
 router.get("/ships",wrapAsync(async(req,res)=>{
     console.log("/iconicCities is Working");
     const allListings = await Listing.find({category:"ship" });
     console.log(allListings);
-    res.render("listings/icon_filter.ejs",{allListings});
+    // res.render("listings/icon_filter.ejs",{allListings});
+    res.redirect(`${process.env.DOMAIN}/listings/ships`);
 }));
 router.get("/tropicals",wrapAsync(async(req,res)=>{
     console.log("/iconicCities is Working");
     const allListings = await Listing.find({category:"tropical" });
     console.log(allListings);
-    res.render("listings/icon_filter.ejs",{allListings});
+    // res.render("listings/icon_filter.ejs",{allListings});
+    res.redirect(`${process.env.DOMAIN}/listings/tropicals`);
 }));
 router.get("/houses",wrapAsync(async(req,res)=>{
     console.log("/iconicCities is Working");
     const allListings = await Listing.find({category:"house" });
     console.log(allListings);
-    res.render("listings/icon_filter.ejs",{allListings});
+    // res.render("listings/icon_filter.ejs",{allListings});
+    res.redirect(`${process.env.DOMAIN}/listings/houses`);
 }));
 router.get("/golfing",wrapAsync(async(req,res)=>{
     console.log("/iconicCities is Working");
     const allListings = await Listing.find({category:"golf" });
     console.log(allListings);
-    res.render("listings/icon_filter.ejs",{allListings});
+    // res.render("listings/icon_filter.ejs",{allListings});
+    res.redirect(`${process.env.DOMAIN}/listings/golfing`);
 }));
 router.get("/beachFront",wrapAsync(async(req,res)=>{
     console.log("/iconicCities is Working");
     const allListings = await Listing.find({category:"beachFront" });
     console.log(allListings);
-    res.render("listings/icon_filter.ejs",{allListings});
+    // res.render("listings/icon_filter.ejs",{allListings});
+    res.redirect(`${process.env.DOMAIN}/listings/beachFront`);
 }));
 router.get("/ski-in-out",wrapAsync(async(req,res)=>{
     console.log("/iconicCities is Working");
     const allListings = await Listing.find({category:"ski-in-out" });
     console.log(allListings);
-    res.render("listings/icon_filter.ejs",{allListings});
+    // res.render("listings/icon_filter.ejs",{allListings});
+    // if(allListings.length){
+        res.redirect(`${process.env.DOMAIN}/listings/ski-n-out`);
+    // }
 }));
 
 

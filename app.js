@@ -128,12 +128,12 @@ app.use((err,req,res,next)=>{
 //     console.log("Server is listening to port 8080");
 // });
 
-const domain = process.env.DOMAIN || 'http://localhost:8080';
+// const domain = process.env.DOMAIN || 'http://localhost:8080';
 
-// const port = process.env.PORT || 8080;
-app.listen(domain, ()=>{
-    console.log("Server is listening to port 8080");
-});
+// // const port = process.env.PORT || 8080;
+// app.listen(domain, ()=>{
+//     console.log("Server is listening to port 8080");
+// });
 
 // const domain = process.env.DOMAIN || 'http://localhost:8080';
 const port = process.env.PORT || 8080;
