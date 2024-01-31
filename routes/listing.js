@@ -49,30 +49,106 @@ router.get("/new",isLoggedIn,(listingController.renderNewForm)); //New Route
 //     }));
 // });
 
-//Icons Functionality
-const categories = [
-    { path: "/iconiccities", category: "iconicCity", iconClass: "fa-mountain-city" },
-    { path: "/castles", category: "castle", iconClass: "fa-fort-awesome" },
-    { path: "/pools", category: "pool", iconClass: "fa-person-swimming" },
-    { path: "/camping", category: "camping", iconClass: "fa-campground" },
-    { path: "/farms", category: "farms", iconClass: "fa-cow" },
-    { path: "/arctics", category: "arctic", iconClass: "fa-snowflake" },
-    { path: "/ships", category: "ship", iconClass: "fa-ship" },
-    { path: "/tropicals", category: "tropical", iconClass: "fa-tree" },
-    { path: "/houses", category: "house", iconClass: "fa-house" },
-    { path: "/golfing", category: "golf", iconClass: "fa-golf-ball-tee" },
-    { path: "/beachFront", category: "beachFront", iconClass: "fa-umbrella-beach" },
-    { path: "/ski-in-out", category: "ski-in-out", iconClass: "fa-person-skiing-nordic" }
-];
+// //Icons Functionality
+// const categories = [
+//     { path: "/iconiccities", category: "iconicCity", iconClass: "fa-mountain-city" },
+//     { path: "/castles", category: "castle", iconClass: "fa-fort-awesome" },
+//     { path: "/pools", category: "pool", iconClass: "fa-person-swimming" },
+//     { path: "/camping", category: "camping", iconClass: "fa-campground" },
+//     { path: "/farms", category: "farms", iconClass: "fa-cow" },
+//     { path: "/arctics", category: "arctic", iconClass: "fa-snowflake" },
+//     { path: "/ships", category: "ship", iconClass: "fa-ship" },
+//     { path: "/tropicals", category: "tropical", iconClass: "fa-tree" },
+//     { path: "/houses", category: "house", iconClass: "fa-house" },
+//     { path: "/golfing", category: "golf", iconClass: "fa-golf-ball-tee" },
+//     { path: "/beachFront", category: "beachFront", iconClass: "fa-umbrella-beach" },
+//     { path: "/ski-in-out", category: "ski-in-out", iconClass: "fa-person-skiing-nordic" }
+// ];
 
-categories.forEach(({ path, category, iconClass }) => {
-    router.get(path, wrapAsync(async(req, res) => {
-        console.log(`${path} is Working`);
-        const allListings = await Listing.find({ category });
-        console.log(allListings);
-        res.render("listings/icon_filter.ejs", { allListings });
-    }));
-});
+// categories.forEach(({ path, category, iconClass }) => {
+//     router.get(path, wrapAsync(async(req, res) => {
+//         console.log(`${path} is Working`);
+//         const allListings = await Listing.find({ category });
+//         console.log(allListings);
+//         res.render("listings/icon_filter.ejs", { allListings });
+//     }));
+// });
+
+router.get("/iconicCities",wrapAsync(async(req,res)=>{
+    console.log("/iconicCities is Working");
+    const allListings = await Listing.find({category:"iconicCity" });
+    console.log(allListings);
+    res.render("listings/icon_filter.ejs",{allListings});
+}));
+router.get("/castles",wrapAsync(async(req,res)=>{
+    console.log("/iconicCities is Working");
+    const allListings = await Listing.find({category:"castle" });
+    console.log(allListings);
+    res.render("listings/icon_filter.ejs",{allListings});
+}));
+router.get("/pools",wrapAsync(async(req,res)=>{
+    console.log("/iconicCities is Working");
+    const allListings = await Listing.find({category:"pool" });
+    console.log(allListings);
+    res.render("listings/icon_filter.ejs",{allListings});
+}));
+router.get("/camping",wrapAsync(async(req,res)=>{
+    console.log("/iconicCities is Working");
+    const allListings = await Listing.find({category:"camping" });
+    console.log(allListings);
+    res.render("listings/icon_filter.ejs",{allListings});
+}));
+router.get("/farms",wrapAsync(async(req,res)=>{
+    console.log("/iconicCities is Working");
+    const allListings = await Listing.find({category:"farms" });
+    console.log(allListings);
+    res.render("listings/icon_filter.ejs",{allListings});
+}));
+router.get("/arctics",wrapAsync(async(req,res)=>{
+    console.log("/iconicCities is Working");
+    const allListings = await Listing.find({category:"arctic" });
+    console.log(allListings);
+    res.render("listings/icon_filter.ejs",{allListings});
+}));
+router.get("/ships",wrapAsync(async(req,res)=>{
+    console.log("/iconicCities is Working");
+    const allListings = await Listing.find({category:"ship" });
+    console.log(allListings);
+    res.render("listings/icon_filter.ejs",{allListings});
+}));
+router.get("/tropicals",wrapAsync(async(req,res)=>{
+    console.log("/iconicCities is Working");
+    const allListings = await Listing.find({category:"tropical" });
+    console.log(allListings);
+    res.render("listings/icon_filter.ejs",{allListings});
+}));
+router.get("/houses",wrapAsync(async(req,res)=>{
+    console.log("/iconicCities is Working");
+    const allListings = await Listing.find({category:"house" });
+    console.log(allListings);
+    res.render("listings/icon_filter.ejs",{allListings});
+}));
+router.get("/golfing",wrapAsync(async(req,res)=>{
+    console.log("/iconicCities is Working");
+    const allListings = await Listing.find({category:"golf" });
+    console.log(allListings);
+    res.render("listings/icon_filter.ejs",{allListings});
+}));
+router.get("/beachFront",wrapAsync(async(req,res)=>{
+    console.log("/iconicCities is Working");
+    const allListings = await Listing.find({category:"beachFront" });
+    console.log(allListings);
+    res.render("listings/icon_filter.ejs",{allListings});
+}));
+router.get("/ski-in-out",wrapAsync(async(req,res)=>{
+    console.log("/iconicCities is Working");
+    const allListings = await Listing.find({category:"ski-in-out" });
+    console.log(allListings);
+    res.render("listings/icon_filter.ejs",{allListings});
+}));
+
+
+
 
 router.route("/:id")
 .get(wrapAsync(listingController.showListing)) //Show
