@@ -17,7 +17,7 @@ router.route("/")
 router.get("/new",isLoggedIn,(listingController.renderNewForm)); //New Route
 
 
-const ipAddress = "35.160.120.126"; // Choose one of the static IP addresses provided  35.160.120.126
+const ipAddress = "44.233.151.27"; // Choose one of the static IP addresses provided  35.160.120.126
 const port = 8080; // Assuming your server is listening on port 8080
 
 // const categories = [
