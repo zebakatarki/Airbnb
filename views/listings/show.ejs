@@ -55,19 +55,22 @@
             </form>
         </div>
     </div>
+
     <% } %>
+
+    
 
     <div class="row">
         <div class="col-md-6 offset-md-3 col-12 mb-3 mt-1">
             <% if(listing.reviews.length > 0)  {%>
-            <hr/>
+            
             <div class="row">
                 <p><b>All Reviews</b></p>
                 <% for(let i = 0; i < listing.reviews.length; i+=2){ %>
                 <div class="row">
                     <% for(let j = i; j < Math.min(i+2, listing.reviews.length); j++){ %>
-                    <div class="card col-md-6 mb-3 col-12">
-                        <div class="card-body mt-2">
+                    <div class="card col-md-6 mb-3 col-12" style="margin-right: 3px; margin-bottom: 4px;"> <!-- Decreased margin-left and added margin-bottom -->
+                        <div class="card-body mt-2" style="margin-left: -3px;"> <!-- Decreased margin-left -->
                             <h5 class="card-title">@<%= listing.reviews[j].author.username  %></h5>
                             <p class="starability-result card-text" data-rating="<%= listing.reviews[j].rating %>"></p>
                             <p class="card-text"><%= listing.reviews[j].Comment %></p>
@@ -88,6 +91,8 @@
             </form>
         </div>
     </div>
+    
+    
 
     <div class="row">
         <div class="col-md-6 offset-md-3 col-12 mb-4">
