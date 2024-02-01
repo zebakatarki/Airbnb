@@ -46,10 +46,102 @@
     align-items: center;
   }
 </style>
+onclick="location.href='<%= process.env.DOMAIN || '' %>/listings/iconiccities'"
+
+<div class="container">
+  <div id="filters" class="lg-3 md-2 sm-1">
+      <div class="filter filterslideable">
+
+        <!-- <button type="button" class="icon-button" onclick="location.href='<= process.env.DOMAIN || '' %>/listings/iconiccities'">
+          <div><i class="fa-solid fa-mountain-city"></i></div>
+          <p>Iconic cities</p>
+        </button>
+      </div> -->
+
+      <div class="filter filterslideable">
+       <button type="button" class="icon-button" onclick="location.href='/listings/castles'">
+          <div><i class="fa-brands fa-fort-awesome"></i></div>
+          <p>Castles</p> 
+        </button>  
+      </div>
+
+      <div class="filter filterslideable">
+        <button type="button" class="icon-button" onclick="location.href='/listings/pools'">
+        <div><i class="fa-solid fa-person-swimming"></i></div>
+        <p>Pools</p>
+      </button>
+      </div>
+
+      <div class="filter filterslideable">
+        <button type="button" class="icon-button" onclick="location.href='/listings/camping'">
+        <div><i class="fa-solid fa-campground"></i></div>
+        <p>Camping</p>
+      </button>
+      </div>
+
+      <div class="filter filterslideable">
+        <button type="button" class="icon-button" onclick="location.href='/listings/farms'">
+        <div><i class="fa-solid fa-cow"></i></div>
+        <p>farms</p>
+      </button>
+      </div>
+ 
+      <div class="filter filterslideable">
+        <button type="button" class="icon-button" onclick="location.href='/listings/arctics'">
+        <div><i class="fa-solid fa-snowflake"></i></div>
+        <p>Arctic</p>
+      </button>
+      </div>
+
+      <div class="filter filterslideable">
+        <button type="button" class="icon-button" onclick="location.href='/listings/ships'">
+        <div><i class="fa-solid fa-ship"></i></div>
+        <p>Ships</p>
+      </button>
+      </div>
+
+      <div class="filter filterslideable">
+        <button type="button" class="icon-button" onclick="location.href='/listings/tropicals'">
+        <div><i class="fa-solid fa-tree"></i></div>
+        <p>Tropical</p>
+      </button>
+      </div>
+
+      <div class="filter filterslideable">
+        <button type="button" class="icon-button" onclick="location.href='/listings/houses'">
+        <div><i class="fa-solid fa-house"></i></div>
+        <p>Houses</p>
+      </button>
+      </div>
+      
+      <div class="filter filterslideable">
+        <button type="button" class="icon-button" onclick="location.href='/listings/golfing'">
+        <div><i class="fa-solid fa-golf-ball-tee"></i></div>
+        <p>Golfing</p>
+      </button>
+      </div>
+
+      <div class="filter filterslideable">
+        <button type="button" class="icon-button" onclick="location.href='/listings/beachFront'">
+        <div><i class="fa-solid fa-umbrella-beach"></i></div>
+        <p>Beachfront</p>
+      </button>
+      </div>
+
+      <div class="filter filterslideable">
+        <button type="button" class="icon-button" onclick="location.href='/listings/ski-in-out'">
+        <div><i class="fa-solid fa-person-skiing-nordic"></i></div>
+        <p>Ski-in/out</p>
+      </button>
+      </div>
+
+
+
+
 
 <!-- onclick="location.href='/listings/iconiccities'" -->
 
-<div class="container">
+<!-- <div class="container">
   <div id="filters" class="lg-3 md-2 sm-1">
       <div class="filter filterslideable">
 
@@ -134,7 +226,8 @@
         <div><i class="fa-solid fa-person-skiing-nordic"></i></div>
         <p>Ski-in/out</p>
       </button>
-      </div>
+      </div> -->
+
 
 <!-- <div class="container">
   <div id="filters" class="lg-3 md-2 sm-1">
@@ -352,5 +445,24 @@
       }
     }
   });
+
+
+  
+
+    document.addEventListener("DOMContentLoaded", function() {
+        const iconButton = document.querySelector(".icon-button");
+        if (iconButton) {
+            iconButton.addEventListener("click", function() {
+                const domain = "<%= process.env.DOMAIN || '' %>";
+                const href = `${domain}/listings/iconiccities`;
+                window.location.href = href;
+            });
+        }
+    });
+
+
+
+
+
 </script> 
 
