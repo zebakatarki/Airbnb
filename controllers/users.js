@@ -17,7 +17,7 @@ module.exports.signup = async(req,res)=>{
             return next(err);
         }
         console.log("User directly loggedIn");
-        req.flash("success","Welcome to Wanderlust!");
+        req.flash("success","Welcome to Destination-Explorer!");
         res.redirect("/listings");
     });
     }catch(err){
@@ -32,7 +32,7 @@ module.exports.renderLoginForm = (req,res)=>{
 }
 
 module.exports.logIn=async(req,res)=>{ 
-    req.flash("success","Welcome back to Wanderlust!");
+    req.flash("success","Welcome back to Destination-Explorer!");
     console.log("Logged In manually");
     let redirectUrl = res.locals.redirectUrl || "/listings";
     res.redirect(redirectUrl);
